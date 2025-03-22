@@ -1,4 +1,4 @@
-package com.marcushurlbut.demusicfy.domain
+package com.marcushurlbut.demusicfy.ui.view.guitar
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,7 +12,6 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun FretWire() {
     Spacer(modifier = Modifier.height(4.dp))
-
     Divider(
         color = Color(0xFFB0B0B0),
         thickness = 2.dp,

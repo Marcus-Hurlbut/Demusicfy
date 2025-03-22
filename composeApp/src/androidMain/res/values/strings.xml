@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Demusicfy</string>
+    <string name="app_slogan">Learn complex chords from anywhere!</string>
+
+    <!--    Music Note Names-->
+    <string name="c">C</string>
+    <string name="d_flat">D♭</string>
+    <string name="d">D</string>
+    <string name="e_flat">E♭</string>
+    <string name="e">E</string>
+    <string name="f">F</string>
+    <string name="g_flat">G♭</string>
+    <string name="g">G</string>
+    <string name="a_flat">A♭</string>
+    <string name="a">A</string>
+    <string name="b_flat">B♭</string>
+    <string name="b">B</string>
 </resources>

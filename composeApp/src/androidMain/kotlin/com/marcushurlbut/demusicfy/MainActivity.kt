@@ -1,23 +1,40 @@
 package com.marcushurlbut.demusicfy
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.sqlite.driver.bundled.BundledSQLiteDriver
+import com.marcushurlbut.demusicfy.domain.data.database.AppDatabase
+import kotlinx.coroutines.Dispatchers
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        context = this
+        val database = getAppDatabase(applicationContext)
         setContent {
-            App()
+            App(databaseBuilder = database)
         }
     }
-}
 
-@Preview
-@Composable
-fun AppAndroidPreview() {
-    App()
+    @SuppressLint("StaticFieldLeak")
+    companion object {
+        var context: Context? = null
+    }
+
+    private fun getAppDatabase(context: Context): RoomDatabase.Builder<AppDatabase> {
+        return Room.databaseBuilder<AppDatabase>(
+            context = context.applicationContext,
+            name = "demusicfy_app.db"
+        )
+            .fallbackToDestructiveMigrationOnDowngrade(true)
+            .setDriver(BundledSQLiteDriver())
+            .setQueryCoroutineContext(Dispatchers.IO)
+    }
+
+
 }
