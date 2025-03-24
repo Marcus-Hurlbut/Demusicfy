@@ -23,7 +23,7 @@ fun LiveText(
     text: String,
     modifier: Modifier = Modifier,
     isVisible: Boolean = true,
-    spec: AnimationSpec<Int> = tween(durationMillis = text.length * 120, easing = LinearEasing),
+    spec: AnimationSpec<Int> = tween(durationMillis = text.length * 80, easing = LinearEasing),
     style: TextStyle = LocalTextStyle.current,
     preoccupySpace: Boolean = true
 ) {

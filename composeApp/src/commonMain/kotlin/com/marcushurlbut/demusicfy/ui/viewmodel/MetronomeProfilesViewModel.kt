@@ -114,7 +114,7 @@ class MetronomeProfilesViewModel(
     }
 
     private fun editProfile(profile: MetronomeProfile) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             dao.update(profile)
         }
     }

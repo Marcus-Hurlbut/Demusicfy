@@ -16,6 +16,7 @@ data class MetronomeUiState(
     val bpm: Int = 128,
     val playing: Boolean = false,
     val soundManager: SoundManager = SoundManager(),
+    val currentSound: String = ""
 )
 
 class MetronomeViewModel : ViewModel() {
@@ -61,6 +62,17 @@ class MetronomeViewModel : ViewModel() {
             val currentState = _uiState.value
             _uiState.value = currentState.copy(
                 bpm = newBPM
+            )
+        }
+    }
+
+    fun switchSound(sound: String) {
+        viewModelScope.launch {
+            val currentState = _uiState.value
+            _uiState.value.soundManager.switchSound(sound)
+
+            _uiState.value = currentState.copy(
+                currentSound = _uiState.value.soundManager.sound
             )
         }
     }

@@ -1,4 +1,4 @@
-package com.marcushurlbut.demusicfy.ui.view.guitar
+package com.marcushurlbut.demusicfy.ui.view.chordfinder.guitar
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -14,12 +14,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.marcushurlbut.demusicfy.ui.viewmodel.GuitarNeckViewModel
 import com.marcushurlbut.demusicfy.domain.model.Note
+import com.marcushurlbut.demusicfy.ui.viewmodel.ChordFinderViewModel
 
 @Composable
-fun Fret(note: Note, fret: Int, string: Int, viewModel: GuitarNeckViewModel) {
-    val buttonWidth = 42.dp
+fun Fret(note: Note, fret: Int, string: Int, viewModel: ChordFinderViewModel) {
+    val buttonWidth = 56.dp
     val buttonHeight = 64.dp
 
     Button(
@@ -27,7 +27,6 @@ fun Fret(note: Note, fret: Int, string: Int, viewModel: GuitarNeckViewModel) {
             viewModel.pressFret(note, string, fret)
         },
         modifier = Modifier
-            .padding(4.dp)
             .height(buttonHeight)
             .width(buttonWidth),
         colors = ButtonDefaults.buttonColors(
@@ -40,13 +39,13 @@ fun Fret(note: Note, fret: Int, string: Int, viewModel: GuitarNeckViewModel) {
             color = Color.White,
             style = MaterialTheme.typography.body2.copy(
                 fontWeight = FontWeight.Bold,
-                fontSize = 12.sp,
+                fontSize = 10.sp,
                 fontFeatureSettings = "",
                 fontFamily = FontFamily.Monospace,
 
                 ),
             maxLines = 1,
-            overflow = TextOverflow.Clip
+            overflow = TextOverflow.Ellipsis
         )
     }
 }

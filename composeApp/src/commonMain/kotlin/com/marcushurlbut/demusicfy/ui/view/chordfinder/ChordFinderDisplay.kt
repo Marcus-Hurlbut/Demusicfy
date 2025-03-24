@@ -1,4 +1,4 @@
-package com.marcushurlbut.demusicfy.ui.view.guitar
+package com.marcushurlbut.demusicfy.ui.view.chordfinder
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -16,11 +16,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.marcushurlbut.demusicfy.ui.viewmodel.GuitarNeckUiState
+import com.marcushurlbut.demusicfy.ui.viewmodel.ChordFinderUiState
 
 @Composable
 fun ChordFinderDisplay(
-    uiState: GuitarNeckUiState
+    state: ChordFinderUiState
 ) {
     Box(
         modifier = Modifier
@@ -45,7 +45,7 @@ fun ChordFinderDisplay(
                         .padding(start = 8.dp)
                 )
                 Text(
-                    text = uiState.chord,
+                    text = state.chord,
                     color = MaterialTheme.colorScheme.onPrimaryContainer,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier
@@ -68,7 +68,7 @@ fun ChordFinderDisplay(
                         .padding(start = 8.dp)
                 )
                 Text(
-                    text = uiState.intervals,
+                    text = state.intervals,
                     color = MaterialTheme.colorScheme.onPrimaryContainer,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier

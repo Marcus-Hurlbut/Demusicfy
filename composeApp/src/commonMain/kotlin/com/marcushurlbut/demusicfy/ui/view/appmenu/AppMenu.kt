@@ -41,7 +41,7 @@ import androidx.navigation.NavHostController
 import com.marcushurlbut.demusicfy.domain.manager.PreferencesManager
 import com.marcushurlbut.demusicfy.resource.OpenFolderIcon
 import com.marcushurlbut.demusicfy.resource.ThemeIcon
-import com.marcushurlbut.demusicfy.ui.view.GuitarNeck
+import com.marcushurlbut.demusicfy.ui.view.ChordFinder
 import com.marcushurlbut.demusicfy.ui.view.Metronome
 import com.marcushurlbut.demusicfy.ui.view.WelcomeScreen
 import kotlinx.coroutines.CoroutineScope
@@ -135,7 +135,7 @@ fun AppMenu(
                 selected = false,
                 icon = { Icon(Icons.Outlined.PlayArrow, contentDescription = null) },
                 onClick = {
-                    navController.navigate(route = GuitarNeck)
+                    navController.navigate(route = ChordFinder)
                     appScope.launch {
                         drawerState.close()
                     }

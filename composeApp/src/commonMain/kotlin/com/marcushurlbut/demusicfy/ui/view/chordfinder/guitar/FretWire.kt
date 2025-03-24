@@ -1,4 +1,4 @@
-package com.marcushurlbut.demusicfy.ui.view.guitar
+package com.marcushurlbut.demusicfy.ui.view.chordfinder.guitar
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth

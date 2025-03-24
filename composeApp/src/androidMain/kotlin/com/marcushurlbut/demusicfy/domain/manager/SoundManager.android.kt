@@ -15,16 +15,20 @@ import kotlin.time.measureTime
 
 
 actual class SoundManager actual constructor() {
-    val player = context?.let {
-        ExoPlayer.Builder(it)
-//            .setAudioAttributes(AudioAtt)
-            .build()
-    }
-    private val soundUri: Uri = Uri.parse("android.resource://${context?.packageName}/raw/tick")
+    actual val sounds = listOf("tick", "tap", "low_hit")
+
+    actual var sound = "tick"
+    private val player = context?.let { ExoPlayer.Builder(it).build() }
+    private var soundUri: Uri = Uri.parse("android.resource://${context?.packageName}/raw/$sound")
     private var loopJob : Job = Job()
 
     init {
         player?.setMediaItem(MediaItem.fromUri(soundUri))
+    }
+
+    actual suspend fun switchSound(sound: String) {
+        this.sound = sound
+        soundUri = Uri.parse("android.resource://${context?.packageName}/raw/$sound")
     }
 
     actual suspend fun play(bpm : Int) {

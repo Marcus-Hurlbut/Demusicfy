@@ -20,9 +20,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
-import com.marcushurlbut.demusicfy.resource.BerkshireFontFamily
 import com.marcushurlbut.demusicfy.resource.CheckIcon
 import com.marcushurlbut.demusicfy.resource.CloseIcon
+import com.marcushurlbut.demusicfy.resource.CursiveFontFamily
 import com.marcushurlbut.demusicfy.ui.viewmodel.MetronomeProfilesViewModel
 
 enum class FormType {
@@ -49,7 +49,7 @@ fun ProfileForm(
                     Text(
                         text = "${formType.name.lowercase().capitalize()} Metronome Profile",
                         color = MaterialTheme.colorScheme.secondary,
-                        fontFamily = BerkshireFontFamily(),
+                        fontFamily = CursiveFontFamily(),
                         fontSize = 24.sp,
                         modifier = Modifier.padding(12.dp)
                     )

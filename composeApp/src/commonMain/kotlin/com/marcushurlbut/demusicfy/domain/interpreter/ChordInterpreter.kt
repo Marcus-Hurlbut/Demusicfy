@@ -83,7 +83,7 @@ class ChordInterpreter {
             setOf(ROOT, FLAT_THIRD, FLAT_FIFTH, FLAT_SEVENTH) -> {type = ChordType.HalfDiminished}
             setOf(ROOT, THIRD, FIFTH, FLAT_SEVENTH) -> {type = ChordType.DominantSeventh}
             setOf(ROOT, THIRD, FIFTH, SEVENTH) -> {type = ChordType.MajorSeventh}
-            setOf(ROOT, THIRD, FIFTH, FLAT_SEVENTH) -> {type = ChordType.MinorSeventh}
+            setOf(ROOT, FLAT_THIRD, FIFTH, FLAT_SEVENTH) -> {type = ChordType.MinorSeventh}
             setOf(ROOT, SECOND, FLAT_THIRD, FIFTH, FLAT_SEVENTH) -> {type = ChordType.MinorNinth}
             setOf(ROOT, SECOND, THIRD, FIFTH, SEVENTH) -> {type = ChordType.MajorNinth}
             setOf(ROOT, THIRD, FIFTH, SIXTH) -> {type = ChordType.MajorSixth}

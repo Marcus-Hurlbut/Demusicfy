@@ -28,6 +28,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ButtonElevation
 import androidx.compose.material3.Card
 import androidx.compose.material3.ElevatedCard
@@ -58,6 +59,7 @@ import com.marcushurlbut.demusicfy.resource.DeleteForeverIcon
 import com.marcushurlbut.demusicfy.resource.EditBoxIcon
 import com.marcushurlbut.demusicfy.ui.view.metronome.components.FormType
 import com.marcushurlbut.demusicfy.ui.view.metronome.components.ProfileForm
+import com.marcushurlbut.demusicfy.ui.view.util.animation.AnimatedColorBrush
 import com.marcushurlbut.demusicfy.ui.viewmodel.MetronomeProfilesViewModel
 
 @Composable
@@ -99,30 +101,21 @@ fun MetronomeProfiles(
             }
         }
 
-        val infiniteTransition = rememberInfiniteTransition(label = "infinite transition")
-        val animatedColor by infiniteTransition.animateColor(
-            initialValue = Color.Magenta,
-            targetValue = MaterialTheme.colorScheme.tertiary,
-            animationSpec = infiniteRepeatable(tween(4000), RepeatMode.Reverse),
-            label = "color"
-        )
-
-        val gradientBrush = Brush.horizontalGradient(
-            colors = listOf(animatedColor, animatedColor),
-            startX = 0.0f,
-            endX = 500.0f,
-            tileMode = TileMode.Clamp
-        )
         Spacer(modifier = Modifier.weight(.10f))
+
         ElevatedCard {
             LazyColumn(
                 modifier = Modifier
                     .fillMaxWidth(.85f)
                     .fillMaxHeight(.70f)
+                    .clip(RoundedCornerShape(8.dp))
                     .border(
-                        width = 4.dp,
-                        brush = gradientBrush,
-                        shape = RectangleShape
+                        width = 2.dp,
+                        brush = AnimatedColorBrush(
+                            MaterialTheme.colorScheme.primary,
+                            MaterialTheme.colorScheme.secondary,
+                            5000),
+                        shape = RoundedCornerShape(12.dp)
                     )
             ) {
                 items(
@@ -131,7 +124,10 @@ fun MetronomeProfiles(
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(8.dp),
+                            .padding(8.dp)
+                            .clip(RoundedCornerShape(8.dp))
+                            .background(MaterialTheme.colorScheme.secondaryContainer),
+
                         horizontalArrangement = Arrangement.SpaceEvenly,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
@@ -151,6 +147,7 @@ fun MetronomeProfiles(
                                     disabledContainerColor = MaterialTheme.colorScheme.secondary,
                                     disabledContentColor = MaterialTheme.colorScheme.onSecondary,
                                 ),
+                                elevation = ButtonDefaults.buttonElevation(8.dp),
                                 modifier = Modifier
                             ) {
                                 Text(

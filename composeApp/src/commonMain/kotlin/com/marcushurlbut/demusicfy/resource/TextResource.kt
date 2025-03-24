@@ -6,6 +6,12 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import demusicfy.composeapp.generated.resources.Pacifico_Regular
 import demusicfy.composeapp.generated.resources.BerkshireSwash_Regular
+import demusicfy.composeapp.generated.resources.Mitr_Bold
+import demusicfy.composeapp.generated.resources.Mitr_ExtraLight
+import demusicfy.composeapp.generated.resources.Mitr_Light
+import demusicfy.composeapp.generated.resources.Mitr_Medium
+import demusicfy.composeapp.generated.resources.Mitr_Regular
+import demusicfy.composeapp.generated.resources.Mitr_SemiBold
 import demusicfy.composeapp.generated.resources.Res
 import org.jetbrains.compose.resources.Font
 
@@ -21,12 +27,14 @@ fun CursiveFontFamily() : FontFamily {
 }
 
 @Composable
-fun BerkshireFontFamily() : FontFamily {
+fun MitrFontFamily() : FontFamily {
     return FontFamily(
-        Font(Res.font.BerkshireSwash_Regular, FontWeight.Light),
-        Font(Res.font.BerkshireSwash_Regular, FontWeight.Normal),
-        Font(Res.font.BerkshireSwash_Regular, FontWeight.Normal, FontStyle.Italic),
-        Font(Res.font.BerkshireSwash_Regular, FontWeight.Medium),
-        Font(Res.font.BerkshireSwash_Regular, FontWeight.Bold)
+        Font(Res.font.Mitr_Light, FontWeight.Light),
+        Font(Res.font.Mitr_ExtraLight, FontWeight.ExtraLight),
+        Font(Res.font.Mitr_Regular, FontWeight.Normal),
+        Font(Res.font.Mitr_Regular, FontWeight.Normal, FontStyle.Italic),
+        Font(Res.font.Mitr_Medium, FontWeight.Medium),
+        Font(Res.font.Mitr_SemiBold, FontWeight.SemiBold),
+        Font(Res.font.Mitr_Bold, FontWeight.Bold),
     )
 }

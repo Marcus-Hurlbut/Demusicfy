@@ -20,6 +20,8 @@ import demusicfy.composeapp.generated.resources.remove_24px
 import demusicfy.composeapp.generated.resources.add_24px
 import demusicfy.composeapp.generated.resources.arrow_back_ios_24px
 import demusicfy.composeapp.generated.resources.check_24px
+import demusicfy.composeapp.generated.resources.check_box_24px
+import demusicfy.composeapp.generated.resources.check_box_outline_blank_24px
 import demusicfy.composeapp.generated.resources.close_24px
 import demusicfy.composeapp.generated.resources.delete_24px
 import demusicfy.composeapp.generated.resources.delete_forever_24px
@@ -30,7 +32,9 @@ import demusicfy.composeapp.generated.resources.music_note_24px
 import demusicfy.composeapp.generated.resources.ink_eraser_24px
 import demusicfy.composeapp.generated.resources.save_24px
 import demusicfy.composeapp.generated.resources.folder_open_24px
+import demusicfy.composeapp.generated.resources.gradient_music_notes_background
 import demusicfy.composeapp.generated.resources.routine_24px
+import demusicfy.composeapp.generated.resources.tooltip_24px
 
 @Composable
 fun getAppIconResource(): Painter {
@@ -301,6 +305,52 @@ fun BackArrowIOS(
     )
 }
 
+@Composable
+fun ToolTipIcon(
+    tint : Color = MaterialTheme.colorScheme.onBackground,
+    modifier: Modifier = Modifier
+) {
+    val painter = painterResource(resource = Res.drawable.tooltip_24px)
+
+    Icon(
+        painter = painter,
+        contentDescription = "Tool Tip Icon",
+        modifier = Modifier,
+        tint = tint
+    )
+}
+
+@Composable
+fun CheckBoxFilledIcon(
+    tint : Color = MaterialTheme.colorScheme.onBackground,
+    modifier: Modifier = Modifier
+) {
+    val painter = painterResource(resource = Res.drawable.check_box_24px)
+
+    Icon(
+        painter = painter,
+        contentDescription = "Check Box Filled Icon",
+        modifier = Modifier,
+        tint = tint
+    )
+}
+
+@Composable
+fun CheckBoxBlankIcon(
+    tint : Color = MaterialTheme.colorScheme.onBackground,
+    modifier: Modifier = Modifier
+) {
+    val painter = painterResource(resource = Res.drawable.check_box_outline_blank_24px)
+
+    Icon(
+        painter = painter,
+        contentDescription = "Check Box Blank Icon",
+        modifier = Modifier,
+        tint = tint
+    )
+}
+
+
 
 // Images
 
@@ -308,3 +358,10 @@ fun BackArrowIOS(
 fun MetronomeImage() : Painter {
     return painterResource(resource = Res.drawable.metronome)
 }
+
+@Composable
+fun MusicNotesBackgroundImage() : Painter {
+    return  painterResource(resource = Res.drawable.gradient_music_notes_background)
+}
+
+

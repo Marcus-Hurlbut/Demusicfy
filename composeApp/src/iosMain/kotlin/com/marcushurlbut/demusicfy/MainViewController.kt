@@ -6,17 +6,10 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import com.marcushurlbut.demusicfy.domain.data.database.AppDatabase
 import kotlinx.cinterop.ExperimentalForeignApi
-import kotlinx.coroutines.Dispatchers
-import platform.CoreGraphics.CGRectZero
 import platform.Foundation.NSDocumentDirectory
 import platform.Foundation.NSFileManager
-import platform.Foundation.NSHomeDirectory
 import platform.Foundation.NSUserDomainMask
-import platform.UIKit.UIApplication
-import platform.UIKit.UIColor
-import platform.UIKit.UIWindow
 
-@OptIn(ExperimentalForeignApi::class)
 fun MainViewController() = ComposeUIViewController {
     App(getAppDatabase())
 }
@@ -28,7 +21,6 @@ private fun getAppDatabase(): RoomDatabase.Builder<AppDatabase> {
     )
         .fallbackToDestructiveMigrationOnDowngrade(true)
         .setDriver(BundledSQLiteDriver())
-//        .setQueryCoroutineContext(Dispatchers.IO)
 }
 
 @OptIn(ExperimentalForeignApi::class)

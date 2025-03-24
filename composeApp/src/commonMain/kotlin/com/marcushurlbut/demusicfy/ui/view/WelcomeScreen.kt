@@ -1,7 +1,5 @@
 package com.marcushurlbut.demusicfy.ui.view
 
-import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateIntOffsetAsState
 import androidx.compose.animation.core.spring
@@ -26,13 +24,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.marcushurlbut.demusicfy.resource.BerkshireFontFamily
+import com.marcushurlbut.demusicfy.resource.CursiveFontFamily
+import com.marcushurlbut.demusicfy.resource.ToolTipIcon
 import com.marcushurlbut.demusicfy.ui.view.util.LiveText
 import kotlin.math.roundToInt
 
@@ -44,14 +43,6 @@ fun WelcomeScreen(
     var showOptions by remember { mutableStateOf(false) }
 
     if (!showOptions) {
-        Text(
-            text = "Remove the complexity out of music!",
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 16.dp)
-                .padding(horizontal = 32.dp),
-        )
-
         Button(
             onClick = { showOptions = true },
             shape = RoundedCornerShape(12.dp),
@@ -59,11 +50,13 @@ fun WelcomeScreen(
                 .fillMaxWidth()
                 .height(64.dp)
                 .padding(horizontal = 32.dp),
-            colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.secondary)
+            colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.primary)
         ) {
             Text(
                 text = "Get Started",
-                color = MaterialTheme.colorScheme.onSecondary
+                color = MaterialTheme.colorScheme.onPrimary,
+                style = MaterialTheme.typography.displaySmall,
+                fontWeight = FontWeight.Bold,
             )
         }
     } else {
@@ -84,64 +77,91 @@ fun WelcomeScreen(
             )
         )
 
+
+        var bottomMsgMoved by remember { mutableStateOf(false) }
+        val bottomPxToMove = with(LocalDensity.current) {
+            300.dp.toPx().roundToInt()
+        }
+        val bottomMsgOffset by animateIntOffsetAsState(
+            targetValue = if (bottomMsgMoved) {
+                IntOffset.Zero
+            } else {
+                IntOffset((bottomPxToMove) * 1, 0)
+            },
+            label = "offset2",
+            animationSpec = spring(
+                dampingRatio = Spring.DampingRatioMediumBouncy,
+                stiffness = Spring.StiffnessLow
+            )
+        )
+
         LaunchedEffect(Unit) {
             moved = !moved
+            bottomMsgMoved = !bottomMsgMoved
         }
 
         LiveText("Welcome Back, Marcus!", style = TextStyle(
             color = MaterialTheme.colorScheme.onBackground,
-            fontFamily = BerkshireFontFamily(),
+            fontFamily = CursiveFontFamily(),
             fontSize = 28.sp
         ))
 
         Button(
             onClick = onNavigateToChordFinder,
+            shape = RoundedCornerShape(8.dp),
             content =  {
                 Text(
                     text = "Chord Finder",
-                    fontFamily = BerkshireFontFamily(),
-                    style = MaterialTheme.typography.displayMedium
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Bold
                 )
             },
             colors = ButtonColors(
-                containerColor = MaterialTheme.colorScheme.secondary,
-                contentColor = MaterialTheme.colorScheme.onSecondary,
-                disabledContainerColor = MaterialTheme.colorScheme.secondary,
-                disabledContentColor = MaterialTheme.colorScheme.onSecondary
+                containerColor = MaterialTheme.colorScheme.primary,
+                contentColor = MaterialTheme.colorScheme.onPrimary,
+                disabledContainerColor = MaterialTheme.colorScheme.primary,
+                disabledContentColor = MaterialTheme.colorScheme.onPrimary
             ),
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxWidth(.70f)
                 .padding(8.dp)
-                .padding(vertical = 24.dp)
+                .padding(vertical = 16.dp)
                 .offset { offset }
         )
         Button(
             onClick = onNavigateToMetronome,
+            shape = RoundedCornerShape(8.dp),
             content =  {
                 Text(
                     text = "Metronome",
-                    fontFamily = BerkshireFontFamily(),
-                    style = MaterialTheme.typography.displayMedium
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Bold
                 )
             },
             colors = ButtonColors(
-                containerColor = MaterialTheme.colorScheme.secondary,
-                contentColor = MaterialTheme.colorScheme.onSecondary,
-                disabledContainerColor = MaterialTheme.colorScheme.secondary,
-                disabledContentColor = MaterialTheme.colorScheme.onSecondary
+                containerColor = MaterialTheme.colorScheme.primary,
+                contentColor = MaterialTheme.colorScheme.onPrimary,
+                disabledContainerColor = MaterialTheme.colorScheme.primary,
+                disabledContentColor = MaterialTheme.colorScheme.onPrimary
             ),
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxWidth(.70f)
                 .padding(8.dp)
                 .padding(vertical = 16.dp)
                 .offset { offset }
 
         )
 
-        HorizontalDivider(color = MaterialTheme.colorScheme.onBackground, thickness = 2.dp)
+        HorizontalDivider(
+            color = MaterialTheme.colorScheme.onBackground,
+            thickness = 2.dp,
+            modifier = Modifier.padding(vertical = 32.dp, horizontal = 28.dp)
+        )
+
         ElevatedCard(
             modifier = Modifier
-                .padding(16.dp),
+                .padding(16.dp)
+                .offset { bottomMsgOffset },
             colors = CardColors(
                 containerColor = MaterialTheme.colorScheme.primaryContainer,
                 contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
@@ -152,17 +172,19 @@ fun WelcomeScreen(
                 defaultElevation = 8.dp
             ),
             content = {
+                ToolTipIcon()
                 Text(
                     modifier = Modifier.padding(8.dp),
-                    text = "This is a fun fact about music, music theory, or capabilities of the app",
-
+                    text = "Did you know that 'Dreams' by Fleetwood Mac is in the Lydian mode?",
+                    fontSize = 18.sp,
                 )
             }
         )
 
         ElevatedCard(
             modifier = Modifier
-                .padding(16.dp),
+                .padding(16.dp)
+                .offset { bottomMsgOffset },
             colors = CardColors(
                 containerColor = MaterialTheme.colorScheme.primaryContainer,
                 contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
@@ -173,16 +195,19 @@ fun WelcomeScreen(
                 defaultElevation = 8.dp
             ),
             content = {
+                ToolTipIcon()
                 Text(
                     modifier = Modifier.padding(8.dp),
-                    text = "This is a fun fact about music, music theory, or capabilities of the app"
+                    text = "Unbelievable - There are no ads in Demusicfy!",
+                    fontSize = 18.sp,
                 )
             }
         )
 
         ElevatedCard(
             modifier = Modifier
-                .padding(16.dp),
+                .padding(16.dp)
+                .offset { bottomMsgOffset },
             colors = CardColors(
                 containerColor = MaterialTheme.colorScheme.primaryContainer,
                 contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
@@ -193,9 +218,11 @@ fun WelcomeScreen(
                 defaultElevation = 8.dp
             ),
             content = {
+                ToolTipIcon()
                 Text(
                     modifier = Modifier.padding(8.dp),
-                    text = "This is a fun fact about music, music theory, or capabilities of the app"
+                    text = "An octave is the interval between one musical pitch and another with half or double its frequency.",
+                    fontSize = 18.sp,
                 )
             }
         )

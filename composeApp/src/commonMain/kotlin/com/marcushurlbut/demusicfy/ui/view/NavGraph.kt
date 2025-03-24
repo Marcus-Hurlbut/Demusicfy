@@ -1,6 +1,6 @@
 package com.marcushurlbut.demusicfy.ui.view
 
-import GuitarNeck
+import ChordFinder
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.DrawerState
@@ -29,17 +29,20 @@ import com.marcushurlbut.demusicfy.ui.view.appmenu.AppContainer
 import com.marcushurlbut.demusicfy.ui.view.appmenu.BottomMenuBar
 import com.marcushurlbut.demusicfy.ui.view.metronome.Metronome
 import com.marcushurlbut.demusicfy.ui.view.metronome.MetronomeProfiles
-import com.marcushurlbut.demusicfy.ui.viewmodel.GuitarNeckViewModel
+import com.marcushurlbut.demusicfy.ui.view.metronome.MetronomeSounds
+import com.marcushurlbut.demusicfy.ui.viewmodel.ChordFinderViewModel
 import com.marcushurlbut.demusicfy.ui.viewmodel.MetronomeProfilesViewModel
 import com.marcushurlbut.demusicfy.ui.viewmodel.MetronomeViewModel
 import kotlinx.serialization.Serializable
 
 @Serializable
-object GuitarNeck
+object ChordFinder
 @Serializable
 object Metronome
 @Serializable
 object MetronomeProfiles
+@Serializable
+object MetronomeSounds
 @Serializable
 object WelcomeScreen
 
@@ -50,15 +53,32 @@ fun NavGraph(
     startDestination: Any,
     drawerState: DrawerState
 ) {
-    val guitarViewModel: GuitarNeckViewModel = remember { GuitarNeckViewModel() }
+    val chordFinderViewModel: ChordFinderViewModel = remember { ChordFinderViewModel() }
     val metronomeViewModel: MetronomeViewModel = remember { MetronomeViewModel() }
     val metronomeProfileViewModel: MetronomeProfilesViewModel = remember { MetronomeProfilesViewModel(database.metronomeProfileDAO()) }
 
     val primaryColor = MaterialTheme.colorScheme.primary
-    val navButtonSize = Modifier.size(24.dp)
+    val navButtonSize = Modifier.size(28.dp)
 
     NavHost(navController = navController, startDestination = startDestination) {
-        composable<GuitarNeck> {
+        composable<WelcomeScreen> {
+            AnimatedVisibility(visible = true) {
+                Scaffold(
+                    topBar = {
+                        AppBar(drawerState)
+                    }
+                ) { innerPadding ->
+                    AppContainer(containerPadding = innerPadding)
+                    {
+                        WelcomeScreen(
+                            onNavigateToChordFinder =  { navController.navigate(route = ChordFinder) },
+                            onNavigateToMetronome = { navController.navigate(route = Metronome) }
+                        )
+                    }
+                }
+            }
+        }
+        composable<ChordFinder> {
             AnimatedVisibility(visible = true) {
                 Scaffold(
                     topBar = {
@@ -66,7 +86,7 @@ fun NavGraph(
                     },
                     bottomBar = {
                         BottomMenuBar(
-                            onFirstButtonClick = { guitarViewModel.clearNotes() },
+                            onFirstButtonClick = { chordFinderViewModel.clearNotes() },
                             onSecondButtonClick = { },
                             onThirdButtonClick = { },
                             onFourthButtonClick = { },
@@ -78,7 +98,7 @@ fun NavGraph(
                 ) { innerPadding ->
                     AppContainer(containerPadding = innerPadding)
                     {
-                        GuitarNeck(viewModel = guitarViewModel)
+                        ChordFinder(viewModel = chordFinderViewModel)
                     }
                 }
             }
@@ -93,7 +113,7 @@ fun NavGraph(
                         BottomMenuBar(
                             onFirstButtonClick = { metronomeViewModel.play() },
                             onSecondButtonClick = { metronomeViewModel.stop() },
-                            onThirdButtonClick = { },
+                            onThirdButtonClick = { navController.navigate(route = MetronomeSounds)},
                             onFourthButtonClick = { navController.navigate(route = MetronomeProfiles) },
                             firstButtonIcon = { PlayIcon(primaryColor, modifier = navButtonSize) },
                             secondButtonIcon = { PauseIcon(primaryColor, modifier = navButtonSize) },
@@ -143,7 +163,7 @@ fun NavGraph(
                 }
             }
         }
-        composable<WelcomeScreen> {
+        composable<MetronomeSounds> {
             AnimatedVisibility(visible = true) {
                 Scaffold(
                     topBar = {
@@ -152,9 +172,9 @@ fun NavGraph(
                 ) { innerPadding ->
                     AppContainer(containerPadding = innerPadding)
                     {
-                        WelcomeScreen(
-                            onNavigateToChordFinder =  { navController.navigate(route = GuitarNeck) },
-                            onNavigateToMetronome = { navController.navigate(route = Metronome) }
+                        MetronomeSounds(
+                            navController = navController,
+                            viewModel = metronomeViewModel
                         )
                     }
                 }

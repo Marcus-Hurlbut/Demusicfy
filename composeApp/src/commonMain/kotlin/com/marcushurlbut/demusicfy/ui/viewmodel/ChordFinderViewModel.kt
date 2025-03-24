@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 // Define a data class to represent the state of the UI
-data class GuitarNeckUiState(
+data class ChordFinderUiState(
     val root: Note? = null,
     val extensions: List<Note> = emptyList(),
     val notes: Array<Array<Note>> = Array(6) { Array(12) { Note() } },
@@ -20,9 +20,9 @@ data class GuitarNeckUiState(
     var intervals: String = ""
 )
 
-class GuitarNeckViewModel : ViewModel() {
-    private val _uiState = MutableStateFlow(GuitarNeckUiState())
-    val uiState: StateFlow<GuitarNeckUiState> = _uiState
+class ChordFinderViewModel : ViewModel() {
+    private val _uiState = MutableStateFlow(ChordFinderUiState())
+    val uiState: StateFlow<ChordFinderUiState> = _uiState
     val chordInterpreter = ChordInterpreter()
 
     fun pressFret(note: Note, stringNum: Int, fretNum: Int) {
@@ -63,7 +63,7 @@ class GuitarNeckViewModel : ViewModel() {
                 _uiState.value = currentState.copy(
                     extensions = currentState.extensions + note,
                     notes = currentState.notes.apply {
-                        this[stringNum][fretNum].setColor(AppTheme.darkPalette.secondary)
+                        this[stringNum][fretNum].setColor(AppTheme.darkPalette.tertiary)
                     }
                 )
             }
