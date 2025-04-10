@@ -1,0 +1,7 @@
+platform :ios, '12.0'
+
+project 'iosApp.xcodeproj'
+
+target 'iosApp' do
+  use_frameworks!
+end

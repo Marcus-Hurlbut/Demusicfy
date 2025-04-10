@@ -1,8 +1,8 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 1,
-    "identityHash": "19e2d9decc3eaa20ff63c10dbb34b6f4",
+    "version": 3,
+    "identityHash": "824cd582c427edc4b5d58f4727074fa8",
     "entities": [
       {
         "tableName": "MetronomeProfile",
@@ -42,7 +42,7 @@
       },
       {
         "tableName": "ChordProfile",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `chord` TEXT NOT NULL, `intervals` TEXT NOT NULL, `nickname` TEXT NOT NULL, `string` INTEGER NOT NULL, `fret` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `chord` TEXT NOT NULL, `intervals` TEXT NOT NULL, `nickname` TEXT NOT NULL, `rootString` INTEGER NOT NULL, `rootFret` INTEGER NOT NULL, `string1` INTEGER NOT NULL, `string2` INTEGER NOT NULL, `string3` INTEGER NOT NULL, `string4` INTEGER NOT NULL, `string5` INTEGER NOT NULL, `string6` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -69,14 +69,50 @@
             "notNull": true
           },
           {
-            "fieldPath": "string",
-            "columnName": "string",
+            "fieldPath": "rootString",
+            "columnName": "rootString",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "fret",
-            "columnName": "fret",
+            "fieldPath": "rootFret",
+            "columnName": "rootFret",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "string1",
+            "columnName": "string1",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "string2",
+            "columnName": "string2",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "string3",
+            "columnName": "string3",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "string4",
+            "columnName": "string4",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "string5",
+            "columnName": "string5",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "string6",
+            "columnName": "string6",
             "affinity": "INTEGER",
             "notNull": true
           }
@@ -91,7 +127,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '19e2d9decc3eaa20ff63c10dbb34b6f4')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '824cd582c427edc4b5d58f4727074fa8')"
     ]
   }
 }

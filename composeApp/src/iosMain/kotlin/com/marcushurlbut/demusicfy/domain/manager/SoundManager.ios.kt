@@ -16,14 +16,14 @@ import kotlin.time.measureTime
 
 
 actual class SoundManager actual constructor() {
-    actual val sounds = listOf("tick", "tap", "low_hit")
+    actual val sounds = listOf("tick", "low_hit", "thump")
     actual var sound: String = "tick"
     private var player: AVAudioPlayer? = null
     private var loopJob : Job = Job()
+    private var nsUrl = NSBundle.mainBundle.URLForResource(sound, "wav")
 
     @OptIn(ExperimentalForeignApi::class)
     actual suspend fun play(bpm: Int) {
-        val nsUrl = NSBundle.mainBundle.URLForResource(sound, "wav")
         player = nsUrl?.let { AVAudioPlayer(it, null) }
         player?.prepareToPlay()
         loopJob = CoroutineScope(Dispatchers.Main).launch {
@@ -32,12 +32,14 @@ actual class SoundManager actual constructor() {
     }
 
     actual suspend fun switchSound(sound: String) {
+        stop()
         this.sound = sound
+        nsUrl = NSBundle.mainBundle.URLForResource(sound, "wav")
     }
 
     actual fun stop() {
         loopJob.cancel()
-        player?.stop()
+        player?.pause()
     }
 
     actual suspend fun adjustTiming(bpm: Int) {
@@ -49,9 +51,10 @@ actual class SoundManager actual constructor() {
 
     private suspend fun loop(bpm: Int) {
         while (loopJob.isActive) {
-            player?.currentTime = 0.0
             player?.play()
             delay(timeDelay(bpm))
+            player?.pause()
+            player?.currentTime = 0.0
         }
     }
 

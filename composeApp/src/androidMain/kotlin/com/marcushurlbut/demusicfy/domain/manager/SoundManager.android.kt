@@ -15,7 +15,7 @@ import kotlin.time.measureTime
 
 
 actual class SoundManager actual constructor() {
-    actual val sounds = listOf("tick", "tap", "low_hit")
+    actual val sounds = listOf("tick", "low_hit", "thump")
 
     actual var sound = "tick"
     private val player = context?.let { ExoPlayer.Builder(it).build() }
@@ -27,6 +27,7 @@ actual class SoundManager actual constructor() {
     }
 
     actual suspend fun switchSound(sound: String) {
+        stop()
         this.sound = sound
         soundUri = Uri.parse("android.resource://${context?.packageName}/raw/$sound")
     }

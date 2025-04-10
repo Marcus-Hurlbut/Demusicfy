@@ -1,22 +1,16 @@
 package com.marcushurlbut.demusicfy.resource
 
-import androidx.compose.material3.Icon
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
-import demusicfy.composeapp.generated.resources.Res
-import demusicfy.composeapp.generated.resources.app_icon
-import demusicfy.composeapp.generated.resources.pause_circle_24px
-import org.jetbrains.compose.resources.painterResource
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.BitmapPainter
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
-import demusicfy.composeapp.generated.resources.graphic_eq_24px
-import demusicfy.composeapp.generated.resources.menu_open_24px
-import demusicfy.composeapp.generated.resources.play_circle_24px
-import demusicfy.composeapp.generated.resources.metronome
-import demusicfy.composeapp.generated.resources.remove_24px
+import demusicfy.composeapp.generated.resources.Res
 import demusicfy.composeapp.generated.resources.add_24px
 import demusicfy.composeapp.generated.resources.arrow_back_ios_24px
 import demusicfy.composeapp.generated.resources.check_24px
@@ -25,16 +19,28 @@ import demusicfy.composeapp.generated.resources.check_box_outline_blank_24px
 import demusicfy.composeapp.generated.resources.close_24px
 import demusicfy.composeapp.generated.resources.delete_24px
 import demusicfy.composeapp.generated.resources.delete_forever_24px
+import demusicfy.composeapp.generated.resources.display_external_input_24px
 import demusicfy.composeapp.generated.resources.edit_24px
 import demusicfy.composeapp.generated.resources.edit_off_24px
 import demusicfy.composeapp.generated.resources.edit_square_24px
-import demusicfy.composeapp.generated.resources.music_note_24px
-import demusicfy.composeapp.generated.resources.ink_eraser_24px
-import demusicfy.composeapp.generated.resources.save_24px
 import demusicfy.composeapp.generated.resources.folder_open_24px
-import demusicfy.composeapp.generated.resources.gradient_music_notes_background
+import demusicfy.composeapp.generated.resources.graphic_eq_24px
+import demusicfy.composeapp.generated.resources.guitar
+import demusicfy.composeapp.generated.resources.ink_eraser_24px
+import demusicfy.composeapp.generated.resources.menu_open_24px
+import demusicfy.composeapp.generated.resources.metronome
+import demusicfy.composeapp.generated.resources.music_note_24px
+import demusicfy.composeapp.generated.resources.music_notes_transparent
+import demusicfy.composeapp.generated.resources.oak_wood
+import demusicfy.composeapp.generated.resources.pause_circle_24px
+import demusicfy.composeapp.generated.resources.play_circle_24px
+import demusicfy.composeapp.generated.resources.remove_24px
 import demusicfy.composeapp.generated.resources.routine_24px
+import demusicfy.composeapp.generated.resources.save_24px
 import demusicfy.composeapp.generated.resources.tooltip_24px
+import demusicfy.composeapp.generated.resources.turntable
+import org.jetbrains.compose.resources.painterResource
+
 
 @Composable
 fun getAppIconResource(): Painter {
@@ -315,7 +321,7 @@ fun ToolTipIcon(
     Icon(
         painter = painter,
         contentDescription = "Tool Tip Icon",
-        modifier = Modifier,
+        modifier = modifier,
         tint = tint
     )
 }
@@ -330,7 +336,7 @@ fun CheckBoxFilledIcon(
     Icon(
         painter = painter,
         contentDescription = "Check Box Filled Icon",
-        modifier = Modifier,
+        modifier = modifier,
         tint = tint
     )
 }
@@ -345,11 +351,25 @@ fun CheckBoxBlankIcon(
     Icon(
         painter = painter,
         contentDescription = "Check Box Blank Icon",
-        modifier = Modifier,
+        modifier = modifier,
         tint = tint
     )
 }
 
+@Composable
+fun DisplayOutputIcon(
+    tint : Color = MaterialTheme.colorScheme.onBackground,
+    modifier: Modifier = Modifier
+) {
+    val painter = painterResource(resource = Res.drawable.display_external_input_24px)
+
+    Icon(
+        painter = painter,
+        contentDescription = "Display Output Icon",
+        modifier = modifier,
+        tint = tint
+    )
+}
 
 
 // Images
@@ -361,7 +381,21 @@ fun MetronomeImage() : Painter {
 
 @Composable
 fun MusicNotesBackgroundImage() : Painter {
-    return  painterResource(resource = Res.drawable.gradient_music_notes_background)
+    return painterResource(resource = Res.drawable.music_notes_transparent)
 }
 
+@Composable
+fun GuitarImage() : Painter {
+    return painterResource(resource = Res.drawable.guitar)
+}
 
+@Composable
+fun TurnTableImage() : Painter {
+    return painterResource(resource = Res.drawable.turntable)
+}
+
+@Composable
+fun OakWoodImage() : Painter {
+    // Create and return a BitmapPainter from the loaded bitmap
+    return painterResource(resource = Res.drawable.oak_wood)
+}

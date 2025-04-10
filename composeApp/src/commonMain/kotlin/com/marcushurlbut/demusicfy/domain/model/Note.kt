@@ -59,14 +59,14 @@ class Note(
     }
 
     fun setFretNum(fretNum: Int) {
-        this.stringNumState.value = fretNum
+        this.fretNumState.value = fretNum
     }
 
     fun getFretNum(): Int {
         return fretNumState.value
     }
 
-    fun getLocation() : IntArray{
-        return intArrayOf(stringNumState.value, fretNumState.value)
+    fun getLocation() : Pair<Int, Int> {
+        return Pair(stringNumState.value, fretNumState.value)
     }
 }

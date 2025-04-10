@@ -10,6 +10,7 @@ androidx-lifecycle = "2.8.4"
 androidx-material = "1.12.0"
 androidx-test-junit = "1.2.1"
 compose-multiplatform = "1.7.3"
+filamentAndroid = "1.9.1"
 jetbrainsNavigationCompose = "2.8.0-alpha10"
 junit = "4.13.2"
 kotlin = "2.1.0"
@@ -32,10 +33,12 @@ media3Exoplayer = "1.5.1"
 roomCommon = "2.7.0-rc02"
 sqlite = "2.5.0-SNAPSHOT"
 androidx-room = "2.7.0-rc02"
-#ksp = "2.0.21-1.0.27"
 ksp = "2.1.0-1.0.29"
 kotlinx-coroutines = "1.10.1"
 navigationRuntimeKtxVersion = "2.8.9"
+sqliteKtx = "2.4.0"
+sqliteAndroid = "2.5.0-rc02"
+animationAndroid = "1.7.8"
 
 [libraries]
 androidx-datastore = { module = "androidx.datastore:datastore", version.ref = "datastoreCoreAndroid" }
@@ -79,10 +82,9 @@ room-compiler = { module = "androidx.room:room-compiler" }
 room-runtime = { module = "androidx.room:room-runtime" }
 sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
 
-kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
-kotlinx-coroutines-core-iosarm64 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core-iossimulatorarm64", version.ref = "kotlinx-coroutines" }
-kotlinx-coroutines-core-iossimulatorarm64 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core-iossimulatorarm64", version.ref = "kotlinx-coroutines" }
-androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationRuntimeKtxVersion" }
+androidx-sqlite-ktx = { group = "androidx.sqlite", name = "sqlite-ktx", version.ref = "sqliteKtx" }
+androidx-sqlite-android = { group = "androidx.sqlite", name = "sqlite-android", version.ref = "sqliteAndroid" }
+androidx-animation-android = { group = "androidx.compose.animation", name = "animation-android", version.ref = "animationAndroid" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

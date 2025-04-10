@@ -11,6 +11,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.State
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -20,12 +23,12 @@ import com.marcushurlbut.demusicfy.ui.viewmodel.ChordFinderUiState
 
 @Composable
 fun ChordFinderDisplay(
-    state: ChordFinderUiState
+    state: State<ChordFinderUiState>
 ) {
     Box(
         modifier = Modifier
-            .padding(16.dp)
-            .clip(RoundedCornerShape(4.dp))
+            .padding(bottom = 16.dp)
+            .fillMaxWidth()
             .background(color = MaterialTheme.colorScheme.primaryContainer)
     ) {
         Column() {
@@ -33,10 +36,9 @@ fun ChordFinderDisplay(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
-                    .fillMaxWidth(.70f)
+                    .fillMaxWidth()
                     .padding(start = 8.dp, end = 8.dp)
             ) {
-
                 Text(
                     text = "Chord",
                     color = MaterialTheme.colorScheme.onPrimaryContainer,
@@ -45,7 +47,7 @@ fun ChordFinderDisplay(
                         .padding(start = 8.dp)
                 )
                 Text(
-                    text = state.chord,
+                    text = state.value.chord,
                     color = MaterialTheme.colorScheme.onPrimaryContainer,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier
@@ -57,7 +59,7 @@ fun ChordFinderDisplay(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
-                    .fillMaxWidth(.70f)
+                    .fillMaxWidth()
                     .padding(start = 8.dp, end = 8.dp)
             ) {
                 Text(
@@ -68,7 +70,7 @@ fun ChordFinderDisplay(
                         .padding(start = 8.dp)
                 )
                 Text(
-                    text = state.intervals,
+                    text = state.value.intervals,
                     color = MaterialTheme.colorScheme.onPrimaryContainer,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier

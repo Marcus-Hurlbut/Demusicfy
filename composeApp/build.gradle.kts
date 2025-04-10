@@ -64,6 +64,7 @@ kotlin {
             implementation(libs.androidx.sqlite.bundled)
             implementation(libs.navigation.compose.v280alpha10)
             implementation(libs.datastore)
+//            implementation(libs.sqlite.bundled)
         }
     }
 }
@@ -110,11 +111,10 @@ dependencies {
     implementation(libs.androidx.datastore.core.android)
     implementation(libs.androidx.datastore.preferences.core.jvm)
     implementation(libs.androidx.room.common)
-//    implementation(libs.androidx.room.ktx)
-//    implementation(libs.androidx.room.runtime)
-//    implementation(libs.androidx.navigation.runtime.ktx)
+    implementation(libs.androidx.sqlite.ktx)
+    implementation(libs.androidx.sqlite.android)
+    implementation(libs.androidx.animation.android)
     debugImplementation(compose.uiTooling)
     ksp(libs.androidx.room.compiler)
-//    implementation(libs.androidx.room.compiler)
 }
 

@@ -38,16 +38,16 @@ class AppTheme {
             primaryContainer = Color(0xFF543A69), // Dark Purple
             onPrimaryContainer = Color.White,
 
-            secondary = Color(0xFF9188C2),  // Lighter Purple
+            secondary = Color(0xFF4F4099),  // Lighter Blue Purple
             onSecondary = Color.Black,
-            secondaryContainer = Color(0xFF2C2742),
+            secondaryContainer = Color(0xFF312766), // Navy Bluish Purple
             onSecondaryContainer = Color.White,
 
 
-            tertiary = Color(0xFF3CC97E),   // Seafoam Green
+            tertiary = Color(0xFFA84C55),   // Pastel Red
             onTertiary = Color.White,
-            tertiaryContainer = Color(0xFF72AD8E), // Light Green
-            onTertiaryContainer = Color.Black
+            tertiaryContainer = Color(0xFFE86D79), // Lighter Pastel Red
+            onTertiaryContainer = Color.White
         )
 
         val fretboard = Color(0xFF4E3629)

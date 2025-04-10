@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.marcushurlbut.demusicfy.domain.data.dao.MetronomeProfileDAO
 import com.marcushurlbut.demusicfy.domain.data.model.MetronomeProfile
-import com.marcushurlbut.demusicfy.ui.view.metronome.components.FormType
+import com.marcushurlbut.demusicfy.ui.view.metronome.profile.FormType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.MutableStateFlow

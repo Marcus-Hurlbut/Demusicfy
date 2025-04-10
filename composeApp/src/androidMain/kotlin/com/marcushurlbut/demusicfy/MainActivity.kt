@@ -9,6 +9,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import com.marcushurlbut.demusicfy.domain.data.database.AppDatabase
+//import com.marcushurlbut.demusicfy.domain.data.database.migrations.MIGRATION_1_2
 import kotlinx.coroutines.Dispatchers
 
 class MainActivity : ComponentActivity() {
@@ -31,9 +32,9 @@ class MainActivity : ComponentActivity() {
             context = context.applicationContext,
             name = "demusicfy_app.db"
         )
-            .fallbackToDestructiveMigrationOnDowngrade(true)
-            .setDriver(BundledSQLiteDriver())
-            .setQueryCoroutineContext(Dispatchers.IO)
+        .fallbackToDestructiveMigrationOnDowngrade(true)
+        .setDriver(BundledSQLiteDriver())
+        .setQueryCoroutineContext(Dispatchers.IO)
     }
 
 

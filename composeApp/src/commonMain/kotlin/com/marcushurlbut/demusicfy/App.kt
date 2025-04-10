@@ -17,6 +17,7 @@ import com.marcushurlbut.demusicfy.ui.theme.AppTheme
 import com.marcushurlbut.demusicfy.ui.view.appmenu.AppMenu
 import com.marcushurlbut.demusicfy.ui.view.NavGraph
 import com.marcushurlbut.demusicfy.ui.view.WelcomeScreen
+import com.marcushurlbut.demusicfy.ui.viewmodel.ChordFinderViewModel
 
 
 @Composable
@@ -25,7 +26,12 @@ fun App(
     navController: NavHostController = rememberNavController(),
 ) {
 
-    val database = remember { databaseBuilder.build() }
+    val database = remember {
+        databaseBuilder
+//            .addMigrations(MIGRATIONS)
+            .fallbackToDestructiveMigration(true)
+            .build()
+    }
     val preferences = remember { PreferencesManager() }
 
 
@@ -60,30 +66,14 @@ fun App(
                     },
                     drawerState = drawerState
                 ) {
-//                    Scaffold(
-//                        topBar = {
-//                            AppBar(drawerState)
-//                        },
-//                        bottomBar = {
-//                            BottomMenuBar()
-//                        }
-//                    ) { innerPadding ->
-//                        Column(
-//                            modifier = Modifier
-//                                .padding(innerPadding)
-//                                .fillMaxSize(),
-//                            verticalArrangement = Arrangement.Center,
-//                            horizontalAlignment = Alignment.CenterHorizontally
-//                        )
-//                        {
+                    val chordFinderViewModel: ChordFinderViewModel = remember { ChordFinderViewModel(database.chordProfileDAO()) }
                             NavGraph(
                                 database = database,
                                 navController = navController,
                                 startDestination = WelcomeScreen,
                                 drawerState = drawerState,
+                                chordFinderViewModel = chordFinderViewModel
                             )
-//                        }
-//                    }
                 }
             }
         }

@@ -8,6 +8,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -15,22 +16,21 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.marcushurlbut.demusicfy.domain.model.Note
+import com.marcushurlbut.demusicfy.resource.OakWoodImage
+import com.marcushurlbut.demusicfy.ui.theme.AppTheme
 import com.marcushurlbut.demusicfy.ui.viewmodel.ChordFinderViewModel
 
 @Composable
-fun Fret(note: Note, fret: Int, string: Int, viewModel: ChordFinderViewModel) {
-    val buttonWidth = 56.dp
-    val buttonHeight = 64.dp
-
+fun Fret(
+    note: Note,
+    onPressFret: () -> Unit
+) {
     Button(
         onClick = {
-            viewModel.pressFret(note, string, fret)
+            onPressFret()
         },
-        modifier = Modifier
-            .height(buttonHeight)
-            .width(buttonWidth),
         colors = ButtonDefaults.buttonColors(
-            backgroundColor = note.getColor()
+            backgroundColor = if (note.getColor() == AppTheme.fretboard) {Color.Transparent} else {note.getColor()}
         ),
         shape = RoundedCornerShape(6.dp)
     ) {
@@ -39,7 +39,7 @@ fun Fret(note: Note, fret: Int, string: Int, viewModel: ChordFinderViewModel) {
             color = Color.White,
             style = MaterialTheme.typography.body2.copy(
                 fontWeight = FontWeight.Bold,
-                fontSize = 10.sp,
+                fontSize = 12.sp,
                 fontFeatureSettings = "",
                 fontFamily = FontFamily.Monospace,
 
