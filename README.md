@@ -1,14 +1,37 @@
-This is a Kotlin Multiplatform project targeting Android, iOS.
+# Demusicfy
+### Multipurpose music tool application
+Use Demusicfy to visualize complex chords on a virtual guitarneck or practice your timing with the metronome
 
-* `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - `commonMain` is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    `iosMain` would be the right folder for such calls.
+------
 
-* `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform, 
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+![demusicfy-home-screen](https://github.com/user-attachments/assets/7ce06865-1097-42fa-a7fc-8b1255b64da9) 
+![demusicfy-main-screen-previews](https://github.com/user-attachments/assets/48b9ec66-d41a-415f-965c-fad656fd65a7)
+
+------
+
+## Overview
+Demusicfy is a cross platform application for `iOS` and `Android`. Currently, there are two main functionalities of this app: Metronome and Chord Finder. 
+
+The Chord finder is a visual representation of a guitar's fretboard. Given the selected root note and other extension note(s) pressed by the user, it will calculate the given chord. If you decide you want to save that visualization for later, Demusicfy allows your to create a 'chord profile' where it saves the given chord on the screen, intervals, and a nickname of your choosing - now you can revisit this specific chord layout anytime. 
+
+The Metronome is just like any other metronome where the bpm can be adjusted to your timing needs. Additionally, you can choose between various metronome sounds to fit your liking. When your finished, there's no need to remember what BPM a song was set to as you can create metronome profiles (similiar to chord profiles) that enable you to set the metronome with the press of a button.
+
+---------
+
+## Features
+- Metronome
+  - Custom metronome sounds
+  - BPM profiles 
+- Chord Finder
+  - Extended chord calculations
+  - Chord profiles
+    
+--------
+## Technologies
+- Kotlin Multiplatform
+- Compose multiplatform
+- SQLite
 
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+
+
